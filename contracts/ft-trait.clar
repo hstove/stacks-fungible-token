@@ -1,7 +1,7 @@
 (define-trait ft-trait
   (
     ;; Transfer from the caller to a new principal
-    (transfer (principal uint) (response bool uint))
+    (transfer (uint principal principal) (response bool uint))
 
     ;; the human readable name of the token
     (name () (response (string-ascii 32) uint))

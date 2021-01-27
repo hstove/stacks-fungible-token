@@ -1,5 +1,21 @@
-import { Client, Provider, Result } from '@blockstack/clarity';
+import { Client, Provider, Result, Receipt } from '@blockstack/clarity';
 // import { TransferError } from '../errors';
+
+const unwrapError = (receipt: Receipt) => {
+  if (!receipt.error) throw new Error('No error found');
+  const error = (receipt.error as unknown) as Error;
+  const message = error.message.split('\n')[0];
+  return parseInt(message.split('Aborted: u')[1], 10);
+};
+
+export class TransferError extends Error {
+  public code: number;
+
+  constructor(code: number) {
+    super(`Transfer rejected with error code ${code}`);
+    this.code = code;
+  }
+}
 
 export class ExampleTokenClient extends Client {
   constructor(principal: string, provider: Provider) {
@@ -9,22 +25,25 @@ export class ExampleTokenClient extends Client {
   async transfer(
     recipient: string,
     amount: number,
-    params: { sender: string }
+    params: { sender: string; senderArg?: string }
   ): Promise<boolean> {
+    const { sender, senderArg } = params;
     const tx = this.createTransaction({
-      method: { name: 'transfer', args: [`'${recipient}`, `u${amount}`] },
+      method: {
+        name: 'transfer',
+        args: [`u${amount}`, `'${senderArg || sender}`, `'${recipient}`],
+      },
     });
-    await tx.sign(params.sender);
+    await tx.sign(sender);
     const receipt = await this.submitTransaction(tx);
-    // console.log(receipt)
     if (receipt.success) {
-      // console.log("debugOutput", receipt.debugOutput)
       const result = Result.unwrap(receipt);
       return result.startsWith(
         'Transaction executed and committed. Returned: true'
       );
     }
-    throw new Error('Unable to transfer token');
+    const error = unwrapError(receipt);
+    throw new TransferError(error);
   }
 
   async balanceOf(owner: string): Promise<number> {

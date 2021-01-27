@@ -1,5 +1,5 @@
 import { Client, Provider, ProviderRegistry } from '@blockstack/clarity';
-import { ExampleTokenClient } from '../src/example-token-client';
+import { ExampleTokenClient, TransferError } from '../src/example-token-client';
 
 let traitClient: Client;
 let provider: Provider;
@@ -84,8 +84,17 @@ describe('Fungible token trait', () => {
       const previousBalance = await exampleToken.balanceOf(charlie);
       await expect(
         exampleToken.transfer(bob, 10000000000, { sender: charlie })
-      ).rejects.toThrowError('Unable to transfer token');
+      ).rejects.toThrowError(new TransferError(1));
       expect(await exampleToken.balanceOf(charlie)).toEqual(previousBalance);
+    });
+
+    test('Cannot invoke transfer with "sender" different than tx-sender', async () => {
+      await expect(
+        exampleToken.transfer(bob, 10000000000, {
+          sender: charlie,
+          senderArg: alice,
+        })
+      ).rejects.toThrowError(new TransferError(4));
     });
   });
 });

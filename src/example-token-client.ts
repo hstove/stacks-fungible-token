@@ -31,7 +31,12 @@ export class ExampleTokenClient extends Client {
     const tx = this.createTransaction({
       method: {
         name: 'transfer',
-        args: [`u${amount}`, `'${senderArg || sender}`, `'${recipient}`],
+        args: [
+          `u${amount}`,
+          `'${senderArg || sender}`,
+          `'${recipient}`,
+          'none',
+        ],
       },
     });
     await tx.sign(sender);

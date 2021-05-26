@@ -1,5 +1,5 @@
 ;; Implement the `ft-trait` trait defined in the `ft-trait` contract
-(impl-trait 'ST3J2GVMMM2R07ZFBJDWTYEYAR8FZH5WKDTFJ9AHA.ft-trait.ft-trait)
+(impl-trait 'ST3J2GVMMM2R07ZFBJDWTYEYAR8FZH5WKDTFJ9AHA.ft-trait.sip-010-trait)
 
 (define-fungible-token example-token)
 
@@ -25,10 +25,17 @@
   (ok u8))
 
 ;; Transfers tokens to a recipient
-(define-public (transfer (amount uint) (sender principal) (recipient principal))
+(define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
   (if (is-eq tx-sender sender)
-    (ft-transfer? example-token amount sender recipient)
+    (begin
+      (try! (ft-transfer? example-token amount sender recipient))
+      (print memo)
+      (ok true)
+    )
     (err u4)))
+
+(define-public (get-token-uri)
+  (ok (some u"https://example.com")))
 
 ;; Mint this token to a few people when deployed
 (ft-mint? example-token u100000000000000 'ST3J2GVMMM2R07ZFBJDWTYEYAR8FZH5WKDTFJ9AHA)

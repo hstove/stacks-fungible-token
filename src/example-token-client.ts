@@ -54,7 +54,7 @@ export class ExampleTokenClient extends Client {
   async balanceOf(owner: string): Promise<number> {
     const query = this.createQuery({
       method: {
-        name: 'balance-of',
+        name: 'get-balance-of',
         args: [`'${owner}`],
       },
     });
@@ -65,7 +65,7 @@ export class ExampleTokenClient extends Client {
   async totalSupply(): Promise<number> {
     const query = this.createQuery({
       method: {
-        name: 'total-supply',
+        name: 'get-total-supply',
         args: [],
       },
     });
@@ -76,7 +76,7 @@ export class ExampleTokenClient extends Client {
   async decimals(): Promise<number> {
     const query = this.createQuery({
       method: {
-        name: 'decimals',
+        name: 'get-decimals',
         args: [],
       },
     });
@@ -87,7 +87,7 @@ export class ExampleTokenClient extends Client {
   async symbol(): Promise<string> {
     const query = this.createQuery({
       method: {
-        name: 'symbol',
+        name: 'get-symbol',
         args: [],
       },
     });
@@ -98,7 +98,7 @@ export class ExampleTokenClient extends Client {
   async getName() {
     const query = this.createQuery({
       method: {
-        name: 'name',
+        name: 'get-name',
         args: [],
       },
     });

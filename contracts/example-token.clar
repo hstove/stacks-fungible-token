@@ -4,24 +4,24 @@
 (define-fungible-token example-token)
 
 ;; get the token balance of owner
-(define-read-only (balance-of (owner principal))
+(define-read-only (get-balance-of (owner principal))
   (begin
     (ok (ft-get-balance example-token owner))))
 
 ;; returns the total number of tokens
-(define-read-only (total-supply)
+(define-read-only (get-total-supply)
   (ok (ft-get-supply example-token)))
 
 ;; returns the token name
-(define-read-only (name)
+(define-read-only (get-name)
   (ok "Example Token"))
 
 ;; the symbol or "ticker" for this token
-(define-read-only (symbol)
+(define-read-only (get-symbol)
   (ok "EXAMPLE"))
 
 ;; the number of decimals used
-(define-read-only (decimals)
+(define-read-only (get-decimals)
   (ok u8))
 
 ;; Transfers tokens to a recipient

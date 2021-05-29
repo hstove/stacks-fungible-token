@@ -54,7 +54,7 @@ export class ExampleTokenClient extends Client {
   async balanceOf(owner: string): Promise<number> {
     const query = this.createQuery({
       method: {
-        name: 'get-balance-of',
+        name: 'get-balance',
         args: [`'${owner}`],
       },
     });

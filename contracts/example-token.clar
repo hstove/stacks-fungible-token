@@ -4,7 +4,7 @@
 (define-fungible-token example-token)
 
 ;; get the token balance of owner
-(define-read-only (get-balance-of (owner principal))
+(define-read-only (get-balance (owner principal))
   (begin
     (ok (ft-get-balance example-token owner))))
 

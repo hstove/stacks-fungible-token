@@ -1,15 +1,12 @@
 # Stacks Fungible Token Standard
 
-This repository is a simple example of a fungible token. It also defines the trait used in the Stacks Improvement Proposal (SIP) for fungible tokens.
+This repository is a simple example of a fungible token. It also defines the trait used in the [Stacks Improvement Proposal (SIP) for fungible tokens](https://github.com/stacksgov/sips/pull/5).
 
 - [Fungible token trait contract](./contracts/ft-trait.clar)
 - [Example token that implements the trait](./contracts/example-token.clar)
-- [Javascript client for interacting with the token](./clients/example-token-client.ts)
-- [Unit tests for the contracts](./contracts/trait.test.ts)
+- [Unit tests for the contracts](./contracts/token.test.ts)
 
-## Credit
-
-Credit for this code belongs to [@psq](https://github.com/psq), who wrote almost all of this code originally for use in his projects (such as [Flexr](https://github.com/psq/flexr)). This repository re-uses the core of his code, and presents it in a way that is easy to present as a possible standard.
+This project is already configured for use with [Clarigen](https://github.com/obylabs/clarigen) and [Clarinet](https://github.com/hirosystems/clarinet) to provide an optimal developer experience.
 
 ## Comparison to ERC20
 

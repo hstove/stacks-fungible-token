@@ -1,15 +1,11 @@
 module.exports = {
-  extends: [
-    'react-app',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['@stacks/eslint-config'],
   settings: {
     react: {
       version: '999.999.999',
     },
   },
   rules: {
-    '@typescript-eslint/no-unused-vars': [2],
+    '@typescript-eslint/no-unused-vars': [0],
   },
 };

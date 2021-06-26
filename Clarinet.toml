@@ -1,0 +1,11 @@
+[project]
+name = "clarinet"
+requirements = []
+
+[contracts.ft-trait]
+path = "contracts/ft-trait.clar"
+depends_on = []
+
+[contracts.token]
+path = "contracts/example-token.clar"
+depends_on = ["ft-trait"]

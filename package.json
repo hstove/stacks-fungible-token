@@ -41,8 +41,8 @@
     }
   ],
   "devDependencies": {
-    "@clarigen/cli": "0.0.4",
-    "@clarigen/test": "0.0.4",
+    "@clarigen/cli": "0.1.1",
+    "@clarigen/test": "0.1.1",
     "@size-limit/preset-small-lib": "^4.9.1",
     "@stacks/eslint-config": "1.0.9",
     "@stacks/prettier-config": "0.0.8",

@@ -1,8 +1,6 @@
 import { TestProvider } from '@clarigen/test';
 import { contracts, ExampleTokenContract, accounts } from '../src/clarigen';
 
-console.log(accounts.deployer.address);
-
 let token: ExampleTokenContract;
 
 const alice = 'ST3J2GVMMM2R07ZFBJDWTYEYAR8FZH5WKDTFJ9AHA';

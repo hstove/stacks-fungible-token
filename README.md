@@ -11,3 +11,11 @@ This project is already configured for use with [Clarigen](https://github.com/ob
 ## Comparison to ERC20
 
 Many of the functions in this contract are built to follow industry best practices. For example, all functions and their signatures are similar to the ERC20 standard on Ethereum. However, the Stacks Blockchain and Clarity smart contracting language have built-in primitives for defining, transfering, and querying fungible tokens. As you can see, the code required to implement a fungible token is quite small.
+
+## Development
+
+Feel free to fork this project and use it for your own token.
+
+Run tests with `yarn test` or `yarn test --watch`
+
+Run Clarinet scripts with `clarinet console` etc

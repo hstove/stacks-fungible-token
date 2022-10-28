@@ -34,7 +34,7 @@
     )
     (err u4)))
 
-(define-public (get-token-uri)
+(define-read-only (get-token-uri)
   (ok (some u"https://example.com")))
 
 ;; Mint this token to a few people when deployed
